@@ -63,10 +63,9 @@
     </div>
     <el-card class="mine-layout">
       <div style="text-align: center">
-        <img width="150px" height="150px" src="http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/banner/qrcode_for_macrozheng_258.jpg">
+        <img width="200px" height="150px" src="https://cn.bing.com/th?id=OHR.Albarracin_ZH-CN0019262872_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp">
       </div>
       <div style="text-align: center">mall全套学习教程连载中！</div>
-      <div style="text-align: center;margin-top: 5px"><span class="color-main">关注公号</span>，第一时间获取。</div>
     </el-card>
     <div class="un-handle-layout">
       <div class="layout-title">待处理事务</div>

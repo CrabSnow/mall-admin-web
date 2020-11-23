@@ -1,5 +1,8 @@
 <template>
   <div>
+    <audio ref="au"  controls  autoplay loop hidden="true">
+      <source src="../../assets/music/smmf.mp3" type="audio/mpeg">
+    </audio>
     <el-card class="login-form-layout">
       <el-form autoComplete="on"
                :model="loginForm"
@@ -7,9 +10,10 @@
                ref="loginForm"
                label-position="left">
         <div style="text-align: center">
-          <svg-icon icon-class="login-mall" style="width: 56px;height: 56px;color: #409EFF"></svg-icon>
+          <img :src="logo_bg" class="login-center-main" style="pointer-events: none">
+          <!--<svg-icon icon-class="example" style="width: 150px;height: 150px;color: #409EFF"></svg-icon>-->
         </div>
-        <h2 class="login-title color-main">mall-admin-web</h2>
+        <h2 class="login-title color-main">九溪卫工作室</h2>
         <el-form-item prop="username">
           <el-input name="username"
                     type="text"
@@ -37,38 +41,21 @@
           </el-input>
         </el-form-item>
         <el-form-item style="margin-bottom: 60px;text-align: center">
-          <el-button style="width: 45%" type="primary" :loading="loading" @click.native.prevent="handleLogin">
+          <el-button style="width: 50%" type="primary" :loading="loading" @click.native.prevent="handleLogin">
             登录
-          </el-button>
-          <el-button style="width: 45%" type="primary" @click.native.prevent="handleTry">
-            获取体验账号
           </el-button>
         </el-form-item>
       </el-form>
     </el-card>
-    <img :src="login_center_bg" class="login-center-layout">
-    <el-dialog
-      title="公众号二维码"
-      :visible.sync="dialogVisible"
-      :show-close="false"
-      :center="true"
-      width="30%">
-      <div style="text-align: center">
-        <span class="font-title-large"><span class="color-main font-extra-large">关注公众号</span>回复<span class="color-main font-extra-large">体验</span>获取体验账号</span>
-        <br>
-        <img src="http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/banner/qrcode_for_macrozheng_258.jpg" width="160" height="160" style="margin-top: 10px">
-      </div>
-      <span slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="dialogConfirm">确定</el-button>
-      </span>
-    </el-dialog>
-  </div>
+    <img :src="login_center_bg" class="login-center-layout" style="pointer-events: none">
+    </div>
 </template>
 
 <script>
   import {isvalidUsername} from '@/utils/validate';
-  import {setSupport,getSupport,setCookie,getCookie} from '@/utils/support';
-  import login_center_bg from '@/assets/images/login_center_bg.png'
+  import {setSupport,getSupport,setCookie,getCookie,toggleSound} from '@/utils/support';
+  import login_center_bg from '@/assets/images/true.png'
+  import logo_bg from '@/assets/images/logo.jpg'
 
   export default {
     name: 'login',
@@ -99,6 +86,7 @@
         loading: false,
         pwdType: 'password',
         login_center_bg,
+        logo_bg,
         dialogVisible:false,
         supportDialogVisible:false
       }
@@ -114,6 +102,11 @@
       }
     },
     methods: {
+      handleCanplay() {
+        this.$nextTick(() => {
+          this.$refs.au.play()
+        })
+      },
       showPwd() {
         if (this.pwdType === 'password') {
           this.pwdType = ''
@@ -162,11 +155,12 @@
 <style scoped>
   .login-form-layout {
     position: absolute;
-    left: 0;
+    left: 10px;
     right: 0;
     width: 360px;
-    margin: 140px auto;
-    border-top: 10px solid #409EFF;
+    margin: 38px auto;
+    border-top: 50px solid #000000;
+    border-bottom: 50px solid #000000;
   }
 
   .login-title {
@@ -174,11 +168,23 @@
   }
 
   .login-center-layout {
-    background: #409EFF;
-    width: auto;
-    height: auto;
+    background: #fafafa;
+    width: 100%;
+    height: 150%;
+    max-width: 100%;
+    max-height: 150%;
+    border-top: 120px solid #fafafa;
+    border-bottom: 120px solid #000000;
+
+  }
+  .login-center-main {
+    background: #fafafa;
+    width: 40%;
+    height: 20%;
     max-width: 100%;
     max-height: 100%;
-    margin-top: 200px;
+  }
+  .el-button{
+    background: #000000;
   }
 </style>
